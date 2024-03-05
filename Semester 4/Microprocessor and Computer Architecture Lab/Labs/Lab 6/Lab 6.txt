@@ -1,0 +1,169 @@
+////Activity 1
+//#include <avr/io.h>
+//#include <avr/interrupt.h>
+//int dutycycle = 0;
+//void setupadc()
+//{
+	//ADMUX = (1 << REFS0) | (1 << MUX0) | (1 << MUX2) | (1 << ADLAR);
+	//ADCSRA = (1 << ADEN) | (1 << ADIE) | (1 << ADPS2);
+	//startconversion();
+//}
+//void startconversion()
+//{
+	//ADCSRA |= (1 << ADSC);
+//}
+//void main()
+//{
+	//DDRA = 0x00;
+	//DDRB = (1 << PORTB3);
+	//TCCR0 = (1 << WGM01) | (1 << WGM00) | (1 << COM01);
+	//TIMSK = (1 << TOIE0);
+	//sei();
+	//setupadc();
+	//TCCR0 |= (1 << CS00);
+	//while (1);
+//}
+//ISR(TIMER0_OVF_vect)
+//{
+	//OCR0 = dutycycle;
+//}
+//ISR(ADC_vect)
+//{
+	//dutycycle = ADCH;
+	//startconversion();
+//}
+
+////Activity 2 INCORRECT
+//#include <avr/io.h>
+//#include <avr/interrupt.h>
+//int dutycycle = 0;
+//void setupadc()
+//{
+	//ADMUX = (1 << REFS0);
+	//ADCSRA = (1 << ADEN) | (1 << ADIE) | (1 << ADPS2);
+	//startconversion();
+//}
+//void startconversion()
+//{
+	//ADCSRA |= (1 << ADSC);
+//}
+//void main()
+//{
+	//DDRA = 0x00;
+	//DDRB = 0xFF;
+	//DDRD = 0xFF;
+	//sei();
+	//setupadc();
+	//while (1);
+//}
+//ISR(ADC_vect)
+//{
+	//PORTD = ADCL;
+	//PORTB = ADCH;
+	//startconversion();
+//}
+
+//Activity 2
+#include <avr/io.h>
+#include <avr/interrupt.h>
+void startconversion()
+{
+	
+	ADCSRA|=(1<<ADSC);
+}
+void setupadc()
+{
+	
+	ADMUX=(1<<REFS0);
+	ADCSRA=(1<<ADEN)|(1<<ADIE)|(1<<ADPS2);
+	startconversion();
+}
+int main(void)
+{
+	DDRA=0x00;
+	DDRB=0xFF;
+	DDRD=0xFF;
+	
+	setupadc();
+	sei();
+	while(1)
+	{
+		PORTD=ADCL;
+		PORTB=ADCH;
+	}
+}
+ISR(ADC_vect)
+{
+	
+	startconversion();
+	
+}
+
+////Activity 3
+//#include <avr/io.h>
+//#include <avr/interrupt.h>
+//double dutycycle1=0;
+//double dutycycle2=0;
+//int count1=0;
+//
+//void startconversion()
+//{
+	//ADCSRA|=(1<<ADSC);
+//}
+//
+//void setupadc5()
+//{
+	//
+	//ADMUX=(1<<REFS0)|(1<<MUX0)|(1<<MUX2)|(1<<ADLAR);
+	//ADCSRA=(1<<ADEN)|(1<<ADIE)|(1<<ADPS2);
+	//startconversion();
+	//count1++;
+//}
+//void setupadc6()
+//{
+	//
+	//ADMUX=(1<<REFS0)|(1<<MUX1)|(1<<MUX2)|(1<<ADLAR);
+	//ADCSRA=(1<<ADEN)|(1<<ADIE)|(1<<ADPS2);
+	//startconversion();
+	//count1++;
+//}
+//
+//int main(void)
+//{
+	//DDRA=0x00;
+	//DDRB=1<<DDRB3;
+	//DDRD=1<<DDRD7;
+	//TCCR0=(1<<WGM01)|(1<<WGM00)|(1<<COM01)|(1<<CS00);
+	//TCCR2=(1<<WGM21)|(1<<WGM20)|(1<<COM21)|(1<<CS20);
+	//TIMSK=(1<<TOIE0)|(1<<TOIE2);
+	//sei();
+	//setupadc5();
+	////TCCR0|=(1<<CS00);
+	//while(1)
+	//{
+		//
+	//}
+//}
+//ISR(TIMER0_OVF_vect)
+//{
+	//OCR0=dutycycle1;
+//}
+//ISR(TIMER2_OVF_vect)
+//{
+	//OCR2=dutycycle2;
+//}
+//ISR(ADC_vect)
+//{
+	//if(count1%2!=0)
+	//{
+		//dutycycle1=ADCH;
+		//setupadc6();
+	//}
+	//else if(count1%2==0)
+	//{
+		//dutycycle2=ADCH;
+		//setupadc5();
+	//}
+	//
+	//startconversion();
+//}

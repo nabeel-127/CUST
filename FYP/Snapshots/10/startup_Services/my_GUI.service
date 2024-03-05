@@ -1,0 +1,16 @@
+[Unit]
+Description=My service
+After = graphical.target
+
+[Service]
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/pi/.Xauthority"
+ExecStart=/usr/bin/python GUI.py
+WorkingDirectory=/home/pi/Desktop/FINAL
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,95 @@
+	EXPORT SystemInit
+	EXPORT __main
+
+	AREA myData2, DATA, READWRITE
+Array2 DCD 33, 65 , 40, 30, 81, 55, 69, 78
+
+	AREA myData1, DATA, READWRITE
+Array1 DCD 51, 49 , 31, 28, 91, 66, 80, 101
+
+	AREA myData3, DATA, READWRITE
+Array3 DCD 0, 0 , 0, 0, 0, 0, 0, 0
+
+SystemInit FUNCTION
+
+	BX LR
+
+	ENDFUNC
+
+__main FUNCTION
+
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+
+
+
+	ldr R0, =Array1
+	ldr R1, =Array2
+	ldr R2, =Array3
+
+	ldr R4, [R0], #4
+	ldr R5, [R1], #4
+	add R5, R5, R4
+	str R5, [R2], #4
+
+	ldr R4, [R0], #4
+	ldr R5, [R1], #4
+	add R5, R5, R4
+	str R5, [R2], #4
+
+	ldr R4, [R0], #4
+	ldr R5, [R1], #4
+	add R5, R5, R4
+	str R5, [R2], #4
+
+	ldr R4, [R0], #4
+	ldr R5, [R1], #4
+	add R5, R5, R4
+	str R5, [R2], #4
+
+	ldr R4, [R0], #4
+	ldr R5, [R1], #4
+	add R5, R5, R4
+	str R5, [R2], #4
+
+	ldr R4, [R0], #4
+	ldr R5, [R1], #4
+	add R5, R5, R4
+	str R5, [R2], #4
+
+	ldr R4, [R0], #4
+	ldr R5, [R1], #4
+	add R5, R5, R4
+	str R5, [R2], #4
+
+	ldr R4, [R0], #4
+	ldr R5, [R1], #4
+	add R5, R5, R4
+	str R5, [R2], #4
+
+
+
+	POP R4
+	POP R5
+	POP R6
+	POP R7
+
+	ENDFUNC
+
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+

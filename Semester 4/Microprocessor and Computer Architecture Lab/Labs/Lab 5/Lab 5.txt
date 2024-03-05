@@ -1,0 +1,42 @@
+////Activity 1
+//#include <avr/io.h>
+//#include <avr/interrupt.h>
+//#include <util/delay.h>
+//double dutycycle = 0;
+//int main()
+//{
+	//DDRB = (1<<DDRB3);
+	//TCCR0 = (1<<WGM01) | (1<<WGM00) | (1<<COM01);
+	//TIMSK = (1<<TOIE0);
+	//OCR0 = (dutycycle / 100) * 255;
+	//sei();
+	//TCCR0 |= (1<<CS00);
+	//while(1)
+	//{
+		//_delay_ms(100);
+		//dutycycle += 10;
+		//if (dutycycle > 255)
+		//{
+			//dutycycle = 0;
+		//}
+	//}
+//}
+//ISR(TIMER0_OVF_vect)
+//{
+	//OCR0 = (dutycycle / 100) * 255;
+//}
+
+//Activity 2
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+double dutycycle = 0;
+int main()
+{
+	DDRB = (1<<DDRB3);
+	TCCR0 = (1<<WGM01) | (1<<WGM00) | (1<<COM01) | (1<<COM00);
+	TIMSK = (1<<TOIE0);
+	OCR0 = 255 - (37.5 / 100) * 256;
+	sei();
+	TCCR0 |= (1<<CS00);
+}

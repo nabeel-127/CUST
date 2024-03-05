@@ -1,0 +1,14 @@
+module carrySelectAdder_8(A, B, Cin, S, Cout);
+
+	input [7: 0] A, B;
+	input Cin;
+	output [7: 0] S;
+	output Cout;
+	wire CoutTEMP;
+
+	carrySelectAdder_4 inst1(A[3: 0], B[3: 0], Cin, S[3: 0], CoutTEMP);
+	carrySelectAdder_4 inst2(A[7: 4], B[7: 4], CoutTEMP, S[7: 4], Cout);
+
+	
+
+endmodule

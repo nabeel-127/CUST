@@ -1,0 +1,87 @@
+Activity 1
+.model small
+.code
+ main PROC
+    mov [bx], 1234h
+    mov ds, [bx]
+    mov ax, 4C00h
+    int 21h
+ main ENDP
+ end main
+
+
+.model small
+.code
+ main PROC
+    mov ds:[1212h], 1234h
+    mov ds, ds:[1212h]
+    mov ax, 4C00h
+    int 21h
+ main ENDP
+ end main
+
+
+.model small
+.code
+ main PROC
+    mov [si+10h], 1234h
+    mov ds, [si+10h]
+    mov ax, 4C00h
+    int 21h
+ main ENDP
+ end main
+
+
+.model small
+.code
+ main PROC
+    mov [bp][si]+10h, 1234h
+    mov ds, [bp][si]+10h
+    mov ax, 4C00h
+    int 21h
+ main ENDP
+ end main
+
+
+
+
+Activty 2
+.model small
+.data
+ num dw 1234h
+.code
+ main PROC
+    mov bx, 1
+    add ax, bx
+    push bx
+    mov bx, 2
+    add ax, bx
+    push bx
+    mov bx, 3
+    add ax, bx
+    push bx
+    mov bx, 4
+    add ax, bx
+    push bx
+    mov bx, 5
+    add ax, bx
+    push bx
+    mov bx, 6
+    add ax, bx
+    push bx
+    mov bx, 7
+    add ax, bx
+    push bx
+    mov bx, 8
+    add ax, bx
+    push bx
+    mov bx, 9
+    add ax, bx
+    push bx
+    mov bx, 10
+    add ax, bx
+    push bx
+    mov ax, 4C00h
+    int 21h
+ main ENDP
+ end main

@@ -1,0 +1,142 @@
+Activity 1
+include 'emu8086.inc'
+.model small
+.stack 100h
+.data
+a dw ?
+result db ?
+.code
+main PROC    
+    mov ax, @data
+    mov ds, ax
+    print 'Enter a:'
+    call scan_num; 
+    printn ' '
+    mov a, cx;
+    
+    mov ax, a
+    mov cx, 2
+    cbw
+    div cx
+    mov cx, 0
+       
+       
+       
+    cmp dx, cx
+    
+    jne ODD
+    print 'Number is Even'
+    printn ' '
+    jmp EVEN
+    
+    ODD: print 'Number is Odd'
+    printn ' '
+    EVEN: mov ax, 4C00h;
+    int 21h;
+main ENDP 
+DEFINE_SCAN_NUM
+DEFINE_PRINT_NUM
+DEFINE_PRINT_NUM_UNS
+end main
+
+
+
+Activity 2
+include 'emu8086.inc'
+.model small
+.stack 100h
+.data
+a dw ?
+result db ?
+.code
+main PROC    
+    mov ax, @data
+    mov ds, ax
+    print 'Enter a:'
+    call scan_num; 
+    printn ' '
+    mov a, cx;
+    mov ax, a
+    
+    mov cx, 90
+    cmp ax, cx
+    jl grade_b
+    print 'Grade: A'
+    printn ' '
+    jmp exit
+    
+    grade_b: mov cx, 80
+    cmp ax, cx
+    jl grade_c
+    print 'Grade: B'
+    printn ' '
+    jmp exit
+    
+    grade_c: mov cx, 70
+    cmp ax, cx
+    jl grade_d
+    print 'Grade: C'
+    printn ' '
+    jmp exit
+    
+    grade_d: mov cx, 60
+    cmp ax, cx
+    jl grade_f
+    print 'Grade: D'
+    printn ' '
+    jmp exit
+    
+    grade_f: print 'Grade: F'
+    printn ' '
+    jmp exit
+    
+    exit:
+  
+    mov ax, 4C00h;
+    int 21h;
+main ENDP 
+DEFINE_SCAN_NUM
+DEFINE_PRINT_NUM
+DEFINE_PRINT_NUM_UNS
+end main
+
+
+
+Activity 3
+include 'emu8086.inc'
+.model small
+.stack 100h
+.data
+a dw ?
+.code
+main PROC    
+    mov ax, @data
+    mov ds, ax
+    print 'Enter a:'
+    call scan_num; 
+    printn ' '
+    mov a, cx;
+    mov ax, a
+    mov bx, ax
+    dec bx
+    dec a
+    mov cx, 0
+    startLoop: cmp cx, a
+    jge exitLoop   
+    mul bx
+    dec bx
+    inc cx 
+
+    jmp startLoop
+    exitLoop:
+          
+    call print_num 
+    printn ' '
+    
+    mov ax, 4C00h;
+    int 21h;
+main ENDP 
+DEFINE_SCAN_NUM
+DEFINE_PRINT_NUM
+DEFINE_PRINT_NUM_UNS
+end main
